@@ -6,22 +6,22 @@
 /*   By: jhouyet <jhouyet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 08:49:17 by jhouyet           #+#    #+#             */
-/*   Updated: 2023/11/09 13:34:13 by jhouyet          ###   ########.fr       */
+/*   Updated: 2023/11/09 15:52:58 by jhouyet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*remain_line(char *book)
+char	*remain_line(char *stash)
 {
 	char	*remaining;
 	char	*nextline;
 	size_t	i;
 
-	if (!book)
-		return (0);
+	if (!stash)
+		return (NULL);
 	remaining = NULL;
-	nextline = ft_strchr(book, '\n');
+	nextline = ft_strchr(stash, '\n');
 	if (nextline != NULL)
 	{
 		i = ft_strlen(nextline + 1);
@@ -29,85 +29,87 @@ char	*remain_line(char *book)
 		if (remaining != NULL)
 			ft_strlcpy(remaining, nextline + 1, i + 1);
 	}
-	free(book);
+	free(stash);
 	return (remaining);
 }
 
-char	*extract_line(char *book)
+char	*extract_line(char *stash)
 {
 	char	*line;
 	int		i;
 	int		j;
 
-	if (!book)
-		return (0);	
+	if (!stash)
+		return (NULL);
 	i = 0;
 	j = 0;
-	while (book[i] != '\0' && book[i] != '\n')
+	while (stash[i] != '\n' && stash[i] != '\0')
 		i++;
 	line = (char *)malloc((i + 1) * sizeof(char));
 	if (!line)
-		return (0);
+		return (NULL);
 	while (j < i)
 	{
-		line[j] = book[j];
+		line[j] = stash[j];
 		j++;
 	}
 	line[i] = '\0';
 	return (line);
 }
 
-char	*buffer_to_book(char *book, char *buffer)
+char	*add_to_stash(char *stash, char *buffer)
 {
 	char	*temp; 
 
-	temp = ft_strjoin(book, buffer); 
-	free(book);
+	temp = ft_strjoin(stash, buffer); 
+	free(stash);
 	return (temp);
 }
 
-static char	*read_file(char *book, int fd)
+static char	*read_file(char *stash, int fd)
 {
-	int			bytes_count;
+	int			nbytes;
 	char		*buffer;
 
 	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buffer)
-		return (0);
-	bytes_count = 1;
-	while (bytes_count > 0)
+		return (NULL);
+	nbytes = read(fd, buffer, BUFFER_SIZE);
+	if (nbytes <= 0)
 	{
-		bytes_count = read(fd, buffer, BUFFER_SIZE);
-		if (bytes_count == -1)
-		{
-			free(buffer);
-			return (0);
-		}
-		book = buffer_to_book(book, buffer);	
-		if (!ft_strchr(book, '\n'))
-			break;
+		free(buffer);
+		if (nbytes == 0 && stash[0] == '\0')
+			free(stash);
+		return (NULL);
 	}
+	buffer[nbytes] = '\0';
+	stash = add_to_stash(stash, buffer);
+	if (!ft_strchr(stash, '\n') && nbytes == BUFFER_SIZE)
+		stash = read_file(stash, fd);
 	free(buffer);
-	return (book);
+	return (stash);
 }
+
+#include <stdio.h>
 
 char	*get_next_line(int fd)
 {
-	static char	*book;
+	static char	*stash;
 	char		*line;
 
+
 	if (fd < 0 || read(fd, NULL, 0) < 0 || BUFFER_SIZE < 0)
-		return (0);
-	if (!book)
-		book = (char *)malloc(1 * sizeof(char));
-	if (!ft_strchr(book, '\n'))
-		book = read_file(book, fd);
-	if (!book)
+		return (NULL);
+	if (!stash)
+		stash = (char *)malloc(sizeof(char));
+	if (!ft_strchr(stash, '\n'))
+		stash = read_file(stash, fd);
+	if (!stash)
 	{
-		free(book);
-		return (0);
+		free(stash);
+		return (NULL);
 	}
-	line = extract_line(book);
-	book = remain_line(book);
+	line = extract_line(stash);
+	stash = remain_line(stash);
 	return (line);
 }

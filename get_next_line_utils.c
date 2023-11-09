@@ -6,25 +6,11 @@
 /*   By: jhouyet <jhouyet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 08:50:17 by jhouyet           #+#    #+#             */
-/*   Updated: 2023/11/09 13:31:30 by jhouyet          ###   ########.fr       */
+/*   Updated: 2023/11/09 15:30:25 by jhouyet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-void	ft_bzero(void *s, size_t n)
-{
-	unsigned char	*a;
-	size_t			i;
-
-	a = s;
-	i = 0;
-	while (i < n)
-	{
-		a[i] = 0;
-		i++;
-	}
-}
 
 char	*ft_strchr(const char *s, int c)
 {

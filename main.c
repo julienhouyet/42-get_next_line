@@ -3,12 +3,14 @@
 
 int main(void)
 {
-  int    fd;
+  int  	fd;
   char  *line;
-  int  count;
+  int  	count;
+  int	test;
 
   count = 0;
-  fd = open("./files/test.txt", O_RDONLY);
+  test = 0;
+  fd = open("./files/multiple_line_no_nl", O_RDONLY);
   if (fd == -1)
   {
 	printf("Error with file.");
@@ -23,6 +25,7 @@ int main(void)
 	printf("[%d]:%s\n", count, line);
 	free(line);
 	line = NULL;
+	test++;
   }
   close(fd);
   system("leaks a.out");
