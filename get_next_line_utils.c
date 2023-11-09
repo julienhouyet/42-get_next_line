@@ -6,23 +6,45 @@
 /*   By: jhouyet <jhouyet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 08:50:17 by jhouyet           #+#    #+#             */
-/*   Updated: 2023/11/09 15:58:21 by jhouyet          ###   ########.fr       */
+/*   Updated: 2023/11/09 17:07:38 by jhouyet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_strchr(const char *s, int c)
+void	*ft_calloc(size_t count, size_t size)
 {
-	while (*s != '\0')
+	char	*str;
+	size_t	i;
+
+	str = malloc(size * count);
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (i < size * count)
 	{
-		if (*s == (char)c)
-			return ((char *)s);
-		s++;
+		str[i] = '\0';
+		i++;
 	}
-	if ((char)c == '\0')
-		return ((char *)s);
-	return (0);
+	return (str);
+}
+
+char	*ft_strrchr(const char *s, int c)
+{
+	int		i;
+	char	*result;
+
+	i = 0;
+	result = 0;
+	while (s[i])
+	{
+		if (s[i] == (unsigned char)c)
+			result = (char *)(s + i);
+		i++;
+	}
+	if (s[i] == (unsigned char)c)
+		result = (char *)(s + i);
+	return (result);
 }
 
 char	*ft_strjoin(char const *s1, char const *s2)
@@ -81,4 +103,24 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	}
 	dst[i] = '\0';
 	return (len_src);
+}
+
+char	*ft_strdup(const char *s1)
+{
+	char	*dest;
+	int		len;
+	int		i;
+
+	i = 0;
+	len = ft_strlen(s1);
+	dest = (char *)malloc(sizeof(char) * (len + 1));
+	if (dest == NULL)
+		return (NULL);
+	while (i < len)
+	{
+		dest[i] = s1[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
 }

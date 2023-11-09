@@ -1,5 +1,9 @@
 {
 	"files.associations": {
-		"get_next_line.h": "c"
+		"get_next_line.h": "c",
+		"stdio.h": "c",
+		"fcntl.h": "c",
+		"limits.h": "c",
+		"algorithm": "c"
 	}
 }

@@ -10,7 +10,7 @@ int main(void)
 
   count = 0;
   test = 0;
-  fd = open("./files/multiple_line_no_nl", O_RDONLY);
+  fd = open("./files/43_with_nl", O_RDONLY);
   if (fd == -1)
   {
 	printf("Error with file.");
