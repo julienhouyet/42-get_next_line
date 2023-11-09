@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhouyet <jhouyet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jhouyet <jhouyet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 08:49:17 by jhouyet           #+#    #+#             */
-/*   Updated: 2023/11/09 17:59:51 by jhouyet          ###   ########.fr       */
+/*   Updated: 2023/11/09 19:02:22 by jhouyet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,9 @@ char	*extract_line(char *stash)
 
 char	*add_to_stash(char *stash, char *buffer)
 {
-	char	*temp; 
+	char	*temp;
 
-	temp = ft_strjoin(stash, buffer); 
+	temp = ft_strjoin(stash, buffer);
 	free(stash);
 	return (temp);
 }
