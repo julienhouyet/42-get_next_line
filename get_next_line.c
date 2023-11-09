@@ -6,7 +6,7 @@
 /*   By: jhouyet <jhouyet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 08:49:17 by jhouyet           #+#    #+#             */
-/*   Updated: 2023/11/09 17:54:53 by jhouyet          ###   ########.fr       */
+/*   Updated: 2023/11/09 17:59:51 by jhouyet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,8 @@ char	*get_next_line(int fd)
 	static char	*stash;
 	char		*line;
 
-	if (fd < 0 || read(fd, NULL, 0) < 0 || BUFFER_SIZE < 1 || BUFFER_SIZE > INT_MAX)
+	if (fd < 0 || read(fd, NULL, 0) < 0 || BUFFER_SIZE < 1 \
+	|| BUFFER_SIZE > INT_MAX)
 		return (NULL);
 	if (!stash)
 		stash = ft_calloc(1, 1);
