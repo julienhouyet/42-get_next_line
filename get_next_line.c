@@ -6,7 +6,7 @@
 /*   By: jhouyet <jhouyet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 08:49:17 by jhouyet           #+#    #+#             */
-/*   Updated: 2023/11/09 15:52:58 by jhouyet          ###   ########.fr       */
+/*   Updated: 2023/11/09 16:15:38 by jhouyet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,11 @@ static char	*read_file(char *stash, int fd)
 	{
 		free(buffer);
 		if (nbytes == 0 && stash[0] == '\0')
+		{
 			free(stash);
-		return (NULL);
+			return (NULL);
+		}
+		return (stash);
 	}
 	buffer[nbytes] = '\0';
 	stash = add_to_stash(stash, buffer);
@@ -96,7 +99,6 @@ char	*get_next_line(int fd)
 {
 	static char	*stash;
 	char		*line;
-
 
 	if (fd < 0 || read(fd, NULL, 0) < 0 || BUFFER_SIZE < 0)
 		return (NULL);
