@@ -6,7 +6,7 @@
 /*   By: jhouyet <jhouyet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 08:50:17 by jhouyet           #+#    #+#             */
-/*   Updated: 2023/11/09 18:00:16 by jhouyet          ###   ########.fr       */
+/*   Updated: 2023/11/10 15:49:31 by jhouyet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,10 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (!s1 || !s2)
 		return (NULL);
 	news = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	i = 0;
-	j = 0;
 	if (news == NULL)
 		return (NULL);
+	i = 0;
+	j = 0;
 	while (s1[i] != '\0')
 	{
 		news[i] = s1[i];
@@ -83,4 +83,10 @@ size_t	ft_strlen(const char *s)
 	while (s[i])
 		i++;
 	return (i);
+}
+
+void	ft_free(char **ptr)
+{
+	free(*ptr);
+	*ptr = NULL;
 }

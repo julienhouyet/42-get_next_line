@@ -6,13 +6,13 @@
 /*   By: jhouyet <jhouyet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 08:49:17 by jhouyet           #+#    #+#             */
-/*   Updated: 2023/11/10 16:21:19 by jhouyet          ###   ########.fr       */
+/*   Updated: 2023/11/10 16:19:24 by jhouyet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*remain_line(char *stash)
+char	*remain_line(char *stash, char *line)
 {
 	char	*remaining;
 	int		i;
@@ -20,22 +20,24 @@ char	*remain_line(char *stash)
 
 	i = 0;
 	j = 0;
-	if (!stash)
+	if (!stash[0])
 		return (NULL);
 	j = ft_strlen(stash);
 	while (stash[i] != '\n' && stash[i])
 		i++;
 	if (!stash[i])
 	{
-		free(stash);
+		ft_free(&stash);
 		return (NULL);
 	}
 	remaining = ft_calloc(j - i + 1, 1);
+	if (!remaining)
+		return (ft_free(&stash), ft_free(&line), NULL);
 	i++;
 	j = 0;
 	while (stash[i])
 		remaining[j++] = stash[i++];
-	free(stash);
+	ft_free(&stash);
 	return (remaining);
 }
 
@@ -72,7 +74,7 @@ char	*add_to_stash(char *stash, char *buffer)
 	char	*temp;
 
 	temp = ft_strjoin(stash, buffer);
-	free(stash);
+	ft_free(&stash);
 	return (temp);
 }
 
@@ -83,7 +85,7 @@ static char	*read_file(char *stash, int fd)
 
 	buffer = ft_calloc(BUFFER_SIZE + 1, 1);
 	if (!buffer)
-		return (NULL);
+		return (ft_free(&stash), NULL);
 	nbytes = 1;
 	while (!ft_strrchr(buffer, '\n') && nbytes > 0)
 	{
@@ -91,7 +93,7 @@ static char	*read_file(char *stash, int fd)
 		if (nbytes < 0)
 		{
 			free(buffer);
-			free(stash);
+			ft_free(&stash);
 			return (NULL);
 		}
 		buffer[nbytes] = '\0';
@@ -115,6 +117,8 @@ char	*get_next_line(int fd)
 	if (!stash)
 		return (NULL);
 	line = extract_line(stash);
-	stash = remain_line(stash);
+	if (!line)
+		return (ft_free(&stash), NULL);
+	stash = remain_line(stash, line);
 	return (line);
 }
