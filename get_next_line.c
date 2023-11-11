@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhouyet <jhouyet@student.s19.be>           +#+  +:+       +#+        */
+/*   By: jhouyet <jhouyet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 08:49:17 by jhouyet           #+#    #+#             */
-/*   Updated: 2023/11/11 11:04:18 by jhouyet          ###   ########.fr       */
+/*   Updated: 2023/11/11 12:22:10 by jhouyet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ char	*remain_line(char *stash)
 		return (NULL);
 	}
 	remaining = ft_calloc(j - i + 1, sizeof(char));
+	if (!remaining)
+		return (NULL);
 	i++;
 	j = 0;
 	while (stash[i])
