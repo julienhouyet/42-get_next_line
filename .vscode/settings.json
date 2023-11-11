@@ -4,6 +4,7 @@
 		"stdio.h": "c",
 		"fcntl.h": "c",
 		"limits.h": "c",
-		"algorithm": "c"
+		"algorithm": "c",
+		"file_utils.h": "c"
 	}
 }

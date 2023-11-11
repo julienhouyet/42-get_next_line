@@ -6,7 +6,7 @@
 /*   By: jhouyet <jhouyet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 08:49:17 by jhouyet           #+#    #+#             */
-/*   Updated: 2023/11/10 18:48:45 by jhouyet          ###   ########.fr       */
+/*   Updated: 2023/11/11 11:04:18 by jhouyet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*remain_line(char *stash)
 		free(stash);
 		return (NULL);
 	}
-	remaining = ft_calloc(j - i + 1, 1);
+	remaining = ft_calloc(j - i + 1, sizeof(char));
 	i++;
 	j = 0;
 	while (stash[i])
@@ -51,7 +51,7 @@ char	*extract_line(char *stash)
 	j = 0;
 	while (stash[i] != '\n' && stash[i])
 		i++;
-	line = ft_calloc(i + 2, 1);
+	line = ft_calloc(i + 2, sizeof(char));
 	if (!line)
 		return (NULL);
 	while (stash[j] != '\n' && stash[j])
@@ -81,7 +81,7 @@ static char	*read_file(char *stash, int fd)
 	int			nbytes;
 	char		*buffer;
 
-	buffer = ft_calloc(BUFFER_SIZE + 1, 1);
+	buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 	if (!buffer)
 		return (NULL);
 	nbytes = 1;
@@ -110,7 +110,7 @@ char	*get_next_line(int fd)
 	|| BUFFER_SIZE > INT_MAX)
 		return (NULL);
 	if (!stash)
-		stash = ft_calloc(1, 1);
+		stash = ft_calloc(1, sizeof(char));
 	stash = read_file(stash, fd);
 	if (!stash)
 		return (NULL);
