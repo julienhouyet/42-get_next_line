@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhouyet <jhouyet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jhouyet <jhouyet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 08:49:17 by jhouyet           #+#    #+#             */
-/*   Updated: 2023/11/11 12:22:10 by jhouyet          ###   ########.fr       */
+/*   Updated: 2023/12/04 09:42:08 by jhouyet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ static char	*read_file(char *stash, int fd)
 	if (!buffer)
 		return (NULL);
 	nbytes = 1;
-	while (!ft_strrchr(buffer, '\n') && nbytes > 0)
+	while (!ft_strchr(buffer, '\n') && nbytes > 0)
 	{
 		nbytes = read(fd, buffer, BUFFER_SIZE);
 		if (nbytes < 0)

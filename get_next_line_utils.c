@@ -6,7 +6,7 @@
 /*   By: jhouyet <jhouyet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 08:50:17 by jhouyet           #+#    #+#             */
-/*   Updated: 2023/12/04 08:46:50 by jhouyet          ###   ########.fr       */
+/*   Updated: 2023/12/04 09:00:08 by jhouyet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,22 +29,17 @@ void	*ft_calloc(size_t count, size_t size)
 	return (str);
 }
 
-char	*ft_strrchr(const char *s, int c)
+char	*ft_strchr(const char *s, int c)
 {
-	int		i;
-	char	*result;
-
-	i = 0;
-	result = 0;
-	while (s[i])
+	while (*s != '\0')
 	{
-		if (s[i] == (unsigned char)c)
-			result = (char *)(s + i);
-		i++;
+		if (*s == (char)c)
+			return ((char *)s);
+		s++;
 	}
-	if (s[i] == (unsigned char)c)
-		result = (char *)(s + i);
-	return (result);
+	if ((char)c == '\0')
+		return ((char *)s);
+	return (0);
 }
 
 char	*ft_strjoin(char const *s1, char const *s2)
