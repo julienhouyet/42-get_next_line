@@ -6,7 +6,7 @@
 /*   By: jhouyet <jhouyet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 08:50:17 by jhouyet           #+#    #+#             */
-/*   Updated: 2023/11/10 18:40:14 by jhouyet          ###   ########.fr       */
+/*   Updated: 2023/12/04 08:46:50 by jhouyet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,10 +83,4 @@ size_t	ft_strlen(const char *s)
 	while (s[i])
 		i++;
 	return (i);
-}
-
-void	ft_free(char **ptr)
-{
-	free(*ptr);
-	*ptr = NULL;
 }
