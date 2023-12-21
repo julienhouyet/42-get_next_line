@@ -1,6 +1,6 @@
 # 42-get_next_line
 
-![42-get_next_line](https://socialify.git.ci/julienhouyet/42-get_next_line/image?logo=https%3A%2F%2Fgithub.com%2Fayogun%2F42-project-badges%2Fraw%2Fmain%2Fbadges%2Fget_next_linem.png&name=1&owner=1&theme=Auto)
+![42-get_next_line](https://socialify.git.ci/julienhouyet/42-get_next_line/image?logo=https%3A%2F%2Fgithub.com%2Fayogun%2F42-project-badges%2Fraw%2Fmain%2Fbadges%2Fget_next_linem.png&name=1&owner=1&pattern=Circuit%20Board&theme=Auto)
 
 # Introduction
 
@@ -18,7 +18,7 @@ To use this library, import the "get_next_line.h" header into your files.
 
 Compile your file with "get_next_line.c" and "get_next_line_utils.c". 
 
-You can edit the BUFFER_SIZE with -D BUFFER_SIZE=<size>.
+You can edit the BUFFER_SIZE with -D BUFFER_SIZE=number.
 
 Exemple :
 
