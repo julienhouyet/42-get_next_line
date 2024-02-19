@@ -47,4 +47,4 @@ Returns a line read from a file descriptor.
 ##  :lock: License
 
 GNU GENERAL PUBLIC LICENSE
-Version 3
+Version 3.
