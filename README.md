@@ -43,8 +43,3 @@ char *get_next_line(int fd);
 ```
 Returns a line read from a file descriptor.
 ```
-
-##  :lock: License
-
-GNU GENERAL PUBLIC LICENSE
-Version 3.
